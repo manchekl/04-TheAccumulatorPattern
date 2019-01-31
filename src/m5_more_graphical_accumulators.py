@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python. 
   
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher, Mark Hays,
-         Aaron Wilkin, their colleagues, and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Aaron Wilkin, their colleagues, and Krista Manche.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -112,6 +112,18 @@ def draw_squares_from_circle(n, circle, window):
     ###########################################################################
     # -------------------------------------------------------------------------
 
+    circle.attach_to(window)
+
+    for _ in range (n):
+        square=rg.Square(circle.center, 2*circle.radius)
+
+        square.attach_to(window)
+
+
+    window.render()
+
+
+
 
 def run_test_draw_circles_from_rectangle():
     """ Tests the   draw_circles_from_rectangle  function. """
@@ -134,6 +146,38 @@ def run_test_draw_circles_from_rectangle():
     #   Follow the same form as the example in a previous problem.
     ###########################################################################
     # -------------------------------------------------------------------------
+
+    title = 'Tests 1 and 2 of Draw_Circles_from_Rectangle: '
+    title = title + ' green/black and blue/red rectangles'
+    window1 = rg.RoseWindow(720, 500, title)
+
+    # Test 1:
+    rec = rg.Rectangle(rg.Point(400,250),rg.Point(440,325))
+    rec.fill_color = 'green'
+    rec.outline_color='black'
+    rec.outline_thickness=5
+    draw_circles_from_rectangle(4,5,rec,window1)
+
+    # Test 2:
+    rec = rg.Rectangle(rg.Point(600, 400), rg.Point(500, 450))
+    rec.fill_color = 'blue'
+    rec.outline_color = 'red'
+    rec.outline_thickness = 3
+    draw_circles_from_rectangle(8, 3, rec, window1)
+
+    # -------------------------------------------------------------------------
+    # A third test on ANOTHER window.
+    # -------------------------------------------------------------------------
+    title = 'Test 3 of Draw_Circles_from_Rectangle:'
+    title += ' yellow/brown rectangle'
+    window2 = rg.RoseWindow(620, 380, title)
+
+    # Test 3:
+    circle = rg.Circle(rg.Point(50, 50), 10)
+    circle.fill_color = 'blue'
+    draw_squares_from_circle(20, circle, window2)
+
+    window2.close_on_mouse_click()
 
 
 def draw_circles_from_rectangle(m, n, rectangle, window):
